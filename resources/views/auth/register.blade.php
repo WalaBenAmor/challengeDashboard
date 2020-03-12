@@ -67,8 +67,14 @@
                                     {{ __('Register') }}
                                 </button>
                             </div>
+                            
+                                
+                 
                         </div>
                     </form>
+                    @if($errors->any())
+                    <h4 class="alert alert-warning">{{$errors->first()}}</h4>
+                    @endif
                 </div>
             </div>
         </div>

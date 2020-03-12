@@ -177,15 +177,4 @@ class ParticipantController extends Controller
     }
 
 
-    function doLogout()
-    {
-        Auth::logout(); // logging out user
-        return redirect()->to('login'); // redirection to login screen
-    }
-
-
-    protected function guard()
-    {
-        return Auth::guard('guard-name');
-    }
 }

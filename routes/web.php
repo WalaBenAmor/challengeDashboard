@@ -35,7 +35,7 @@ Route::resource('organizer', 'OrganizerController');
 
 // Route::get('my-home', 'HomeController@myHome');
 
-// Route::get('my-users', 'HomeController@myUsers');
+Route::resource('my-users', 'HomeController');
 
 // Route::get('register', 'HomeController@register');
 // Route::get('login', 'HomeController@login');

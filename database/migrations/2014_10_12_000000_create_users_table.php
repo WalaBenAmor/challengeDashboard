@@ -22,7 +22,8 @@ class CreateUsersTable extends Migration
             $table->rememberToken();
             $table->timestamps();
             //$table->string('type')->change();
-            $table->string('type');
+            $table->string('type')->default('Guest');
+
         });
     }
 
