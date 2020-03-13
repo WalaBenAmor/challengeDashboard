@@ -42,6 +42,7 @@
                                     <th><strong>StartDate</strong></th>
                                     <th><strong>FinishDate</strong></th>
                                     <th><strong>Action</strong></th>
+
                                 </tr>
                             </thead>
                             <tbody>
@@ -55,11 +56,19 @@
                                     <td>{{$data->description}}</td>
                                     <td>{{$data->startDate}}</td>
                                     <td>{{$data->finishDate}}</td>
-                                    <td>
+
+                                    @if (!auth()->user()->isParticipant()) <td>
                                         <!-- Button trigger modal -->
-                                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#EditChallengeModal">
                                             Edit
                                         </button></td>
+                                    @endif
+                                    @if (auth()->user()->isParticipant()) <td>
+                                        <!-- Button trigger modal -->
+                                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#submitCodeModal">
+                                            Submit Code
+                                        </button></td>
+                                    @endif
 
 
                                 </tr>
@@ -69,7 +78,7 @@
                     </div>
                 </div>
                 <!-- Modal -->
-                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal fade" id="EditChallengeModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog" role="document">
                         <form class="" action="{{URL::to('/storeChallenge')}}" method="post">
                             <div class="modal-content">
@@ -109,6 +118,29 @@
                                 </div>
                             </div>
                         </form>
+                    </div>
+                </div>
+                <!-- Modal -->
+                <div class="modal fade" id="submitCodeModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">My Code</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                            <label for="description">My Code:</label>
+                            <br><br>
+                              <textarea name="myCode"  class="form-control"></textarea>
+
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-primary">Submit Code</button>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

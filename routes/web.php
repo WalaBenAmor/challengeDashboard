@@ -23,6 +23,7 @@ Route::post('/logs', 'ParticipantController@logs');
 //Route::view('/challenge_dashboard', "challenge_dashboard");
 
 Route::view('/create_challenge', "create_challenge");
+Route::view('/approve_guest', "approve_guest");
 
 //Route::resource('challenge', 'ChallengesController');
 Route::resource('comment', 'CommentController');

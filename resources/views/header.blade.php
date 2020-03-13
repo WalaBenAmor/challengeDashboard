@@ -1,13 +1,14 @@
+<a class="navbar-brand" href="index.html">Challenge Dashboard</a>
 <div class="navbar-header">
 
-    <a class="navbar-brand" href="index.html">Challenge Dashboard</a>
+  
     <ul class="nav navbar-top-links navbar-right">
         <!-- /.dropdown -->
 
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
 
         </button>
-
+       
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <!-- Left Side Of Navbar -->
 
