@@ -59,17 +59,88 @@
 
                                     @if (!auth()->user()->isParticipant()) <td>
                                         <!-- Button trigger modal -->
-                                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#EditChallengeModal">
+                                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#EditChallengeModal{{$data->id}}">
                                             Edit
                                         </button></td>
+
                                     @endif
+                                    <!-- Modal -->
+                                    <div class="modal fade" id="EditChallengeModal{{$data->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog" role="document">
+                                            <form class="" action="{{URL::to('/editChallenge')}}" method="post">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="exampleModalLabel">Edit Challenge</h5>
+                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                    </div>
+                                                    <div class="modal-body">
+
+                                                        @csrf
+                                                        <input type="hidden" id="title" name="id" class="form-control" value="{{$data->id}}" placeholder="Enter title">
+
+                                                        <label for="title">Title</label>
+
+                                                        <input type="text" id="title" name="title" class="form-control" value="{{$data->title}}" placeholder="Enter title">
+                                                        <br><br>
+                                                        <label for="status">Status</label>
+                                                        <select id="status" name="status" class="form-control">
+
+                                                            <option value="{{$data->status}}" {{ $data->status !== '' ? 'selected' : '' }}>{{$data->status}}</option>
+                                                            <option value="closed" name="status" >closed</option>
+                                                            <option value="ongoing" name="status" >ongoing</option>
+                                                        </select>
+                                                        <br><br>
+                                                        <label for="description">Description</label>
+                                                        <textarea name="description" id="description" class="form-control" placeholder="Enter description">{{$data->description}}</textarea>
+                                                        <br><br>
+                                                        <label for="startDate">StartDate</label>
+                                                        <input type="date" id="startDate" name="startDate" class="form-control" value="{{$data->startDate}}" placeholder="Enter startDate">
+                                                        <br><br>
+                                                        <label for="finishDate">FinishDate</label>
+                                                        <input type="date" id="finishDate" name="finishDate" class="form-control" value="{{$data->finishDate}}" placeholder="Enter finishDate">
+
+
+
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                        <button type="submit" class="btn btn-primary">Save changes</button>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
                                     @if (auth()->user()->isParticipant()) <td>
                                         <!-- Button trigger modal -->
-                                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#submitCodeModal">
+                                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#submitCodeModal{{$data->id}}">
                                             Submit Code
                                         </button></td>
                                     @endif
+                                    <!-- Modal -->
+                                    <div class="modal fade" id="submitCodeModal{{$data->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="exampleModalLabel">My Code</h5>
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <label for="description">My Code:</label>
+                                                    <br><br>
+                                                    <textarea name="myCode" class="form-control"></textarea>
 
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                    <button type="button" class="btn btn-primary">Submit Code</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
 
                                 </tr>
                                 @endforeach
@@ -77,72 +148,8 @@
                         </table>
                     </div>
                 </div>
-                <!-- Modal -->
-                <div class="modal fade" id="EditChallengeModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog" role="document">
-                        <form class="" action="{{URL::to('/storeChallenge')}}" method="post">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalLabel">Edit Challenge</h5>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-                                <div class="modal-body">
-
-                                    @csrf
-                                    <label for="title">Title</label>
-                                    <input type="text" id="title" name="title" class="form-control" value="" placeholder="Enter title">
-                                    <br><br>
-                                    <label for="status">Status</label>
-                                    <select id="status" name="status" class="form-control">
-                                        <option value="closed">closed</option>
-                                        <option value="ongoing" selected>ongoing</option>
-                                    </select>
-                                    <br><br>
-                                    <label for="description">Description</label>
-                                    <textarea name="description" id="description" class="form-control" value="" placeholder="Enter description"></textarea>
-                                    <br><br>
-                                    <label for="startDate">StartDate</label>
-                                    <input type="date" id="startDate" name="startDate" class="form-control" value="" placeholder="Enter startDate">
-                                    <br><br>
-                                    <label for="finishDate">FinishDate</label>
-                                    <input type="date" id="finishDate" name="finishDate" class="form-control" value="" placeholder="Enter finishDate">
 
 
-
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                    <button type="button" class="btn btn-primary">Save changes</button>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-                <!-- Modal -->
-                <div class="modal fade" id="submitCodeModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">My Code</h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                            <div class="modal-body">
-                            <label for="description">My Code:</label>
-                            <br><br>
-                              <textarea name="myCode"  class="form-control"></textarea>
-
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                <button type="button" class="btn btn-primary">Submit Code</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
 

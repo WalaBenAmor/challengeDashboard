@@ -82,6 +82,49 @@ class ChallengesController extends Controller
 
         return redirect()->back();
     }
+    /**
+     * 
+     * 
+     */
+    public function editChallenge(Request $request)
+    {
+        echo "Store Challenge function";
+        //  print_r($request->input());
+        $user = auth()->user();
+        print_r($user);
+        $id = $request->input('id');
+        $title = $request->input('title');
+        $status = $request->input('status');
+
+        $description = $request->input('description');
+        $startDate  = $request->input('startDate');
+        $finishDate  = $request->input('finishDate');
+        $challenge = Challenge::find($id);
+
+        if ($challenge) {
+            // $challenge = new Challenge();
+            // $challenge->id = $id;
+            $challenge->title = $title;
+            $challenge->status = $status;
+
+
+            $challenge->description =  $description;
+            $challenge->startDate = $startDate;
+            $challenge->finishDate =  $finishDate;
+            $challenge->organizer_id = $user->id;
+
+            $challenge->save();
+
+
+            // return response()->json(['success' => true, 'message' => 'A new challenge is created!']);
+            // return redirect('/login');
+            session()->flash('message', 'A new challenge is added successfully!');
+        }
+
+
+
+        return redirect()->back();
+    }
 
     /**
      * Display the specified resource.

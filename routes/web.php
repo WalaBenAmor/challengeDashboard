@@ -13,19 +13,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
 
-
-//Route::view('/login', "login");
 Route::post('/logs', 'ParticipantController@logs');
-//Route::view('/challenge_dashboard', "challenge_dashboard");
+Route::view('/challenge_dashboard', "challenge_dashboard");
 
 Route::view('/create_challenge', "create_challenge");
 Route::view('/approve_guest', "approve_guest");
 
-//Route::resource('challenge', 'ChallengesController');
 Route::resource('comment', 'CommentController');
 Route::resource('code', 'CodeController');
 Route::resource('admin', 'AdminController');
@@ -34,24 +28,29 @@ Route::resource('guest', 'GuestController');
 Route::resource('organizer', 'OrganizerController');
 
 
-// Route::get('my-home', 'HomeController@myHome');
 
 Route::resource('my-users', 'HomeController');
 
-// Route::get('register', 'HomeController@register');
-// Route::get('login', 'HomeController@login');
 Route::get('ongoing_challenge', 'ChallengesController@ongoingChallenges');
 Route::get('all_challenge', 'ChallengesController@allChallenges');
 Route::post('/storeChallenge', 'ChallengesController@storeChallenge');
-//Route::view('/register', "register");
 Route::post('/store', 'ParticipantController@store');
-//Route::post('/store', 'ChallengesController@store');
-// Route::get('challenge_dashboard/{status}', function ($status) {
-//     return view('challenge_dashboard');
-// });
+Route::post('/editChallenge', 'ChallengesController@editChallenge');
+
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+//Route::post('/store', 'ChallengesController@store');
+// Route::get('challenge_dashboard/{status}', function ($status) {
+//     return view('challenge_dashboard');
+// });
+// Route::get('my-home', 'HomeController@myHome');
+//Route::resource('challenge', 'ChallengesController');
+
+// Route::get('register', 'HomeController@register');
+// Route::get('login', 'HomeController@login');
+//Route::view('/register', "register");
 
 
