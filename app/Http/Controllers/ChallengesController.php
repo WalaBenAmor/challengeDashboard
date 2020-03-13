@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Challenge;
+use App\Code;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -126,6 +127,33 @@ class ChallengesController extends Controller
         return redirect()->back();
     }
 
+    /**
+     * 
+     * 
+     */
+    public function submitCode(Request $request)
+    {
+        echo "Submit code function";
+        //  print_r($request->input());
+        $user = auth()->user();
+        print_r($user);
+        $text = $request->input('myCode');
+        $challenge_id = $request->input('challenge_id');
+        $code = new Code();
+        $code->text = $text;
+        $code->participant_id=$user->id;
+        $code->challenge_id= $challenge_id;
+
+        $code->save();
+
+
+        session()->flash('message', 'Your code is submitted successfully!');
+
+
+
+
+        return redirect()->back();
+    }
     /**
      * Display the specified resource.
      *

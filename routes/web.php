@@ -36,6 +36,8 @@ Route::get('all_challenge', 'ChallengesController@allChallenges');
 Route::post('/storeChallenge', 'ChallengesController@storeChallenge');
 Route::post('/store', 'ParticipantController@store');
 Route::post('/editChallenge', 'ChallengesController@editChallenge');
+Route::post('/submitCode', 'ChallengesController@submitCode');
+
 
 
 Auth::routes();
