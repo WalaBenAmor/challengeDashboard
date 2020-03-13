@@ -18,8 +18,10 @@
 
             </li>
             <li>
-                
+
             </li>
+            @if (auth()->user()->isOrganizer())
+
 
             <li>
 
@@ -44,7 +46,8 @@
                 <!-- /.nav-second-level -->
 
             </li>
-
+            @endif
+            @if (auth()->user()->isParticipant())
             <li>
 
                 <a href="#"><i class="fa fa-files-o fa-fw"></i> Participant<span class="fa arrow"></span></a>
@@ -69,11 +72,9 @@
 
             </li>
 
-            <!--  <li>
-
-                <a href="forms.html"><i class="fa fa-edit fa-fw"></i> Admin</a>
-
-            </li>--> <li>
+            @endif
+            @if (auth()->user()->isAdmin())
+            <li>
 
                 <a href="#"><i class="fa fa-files-o fa-fw"></i> Admin<span class="fa arrow"></span></a>
 
@@ -97,7 +98,7 @@
 
             </li>
 
-
+            @endif
 
 
         </ul>

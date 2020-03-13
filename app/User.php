@@ -38,7 +38,40 @@ class User extends Authenticatable
     ];
 
     public function getAuthPassword()
-{
-    return $this->password;
-}
+    {
+        return $this->password;
+    }
+
+    public function isAdmin()
+    {
+        if ($this->type === 'Admin') {
+            return true;
+        }
+
+        return false;
+    }
+    public function isGuest()
+    {
+        if ($this->type === 'Guest') {
+            return true;
+        }
+
+        return false;
+    }
+    public function isParticipant()
+    {
+        if ($this->type === 'Participant') {
+            return true;
+        }
+
+        return false;
+    }
+    public function isOrganizer()
+    {
+        if ($this->type === 'Organizer') {
+            return true;
+        }
+
+        return false;
+    }
 }

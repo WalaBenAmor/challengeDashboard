@@ -51,7 +51,7 @@ class ChallengesController extends Controller
     public function storeChallenge(Request $request)
     {
         echo "Store Challenge function";
-      //  print_r($request->input());
+        //  print_r($request->input());
         $user = auth()->user();
         print_r($user);
         $title = $request->input('title');
@@ -71,13 +71,16 @@ class ChallengesController extends Controller
         $challenge->description =  $description;
         $challenge->startDate = $startDate;
         $challenge->finishDate =  $finishDate;
-        $challenge->organizer_id=$user->id;
+        $challenge->organizer_id = $user->id;
 
         $challenge->save();
 
 
         // return response()->json(['success' => true, 'message' => 'A new challenge is created!']);
-        return redirect('/login');
+        // return redirect('/login');
+        session()->flash('message', 'A new challenge is added successfully!');
+
+        return redirect()->back();
     }
 
     /**

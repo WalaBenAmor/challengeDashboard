@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
+use App\Challenge;
 
 class LoginController extends Controller
 {
@@ -24,6 +25,29 @@ class LoginController extends Controller
     use AuthenticatesUsers {
         logout as performLogout;
     }
+
+    protected function authenticated(Request $request, $user)
+    {
+        if ($user->isAdmin()) { // do your magic here
+            // return redirect()->route('dashboard');
+            $challenges = Challenge::all();
+            return view('challenge_dashboard', ['challenges' => $challenges], ['status' => 'allStatus']);
+        } elseif ($user->isGuest()) { // do your magic here
+            return view('guest');
+        } elseif ($user->isParticipant() || $user->isOrganizer()) {
+            $challenges = Challenge::where('status', 'ongoing')
+                ->orderBy('id', 'desc')
+                ->take(10)
+                ->get();
+            return view('challenge_dashboard', ['challenges' => $challenges], ['status' => 'ongoing']);
+        }
+
+        return redirect('/home');
+    }
+    /**
+     * 
+     * 
+     */
     public function logout(Request $request)
     {
         $this->performLogout($request);
