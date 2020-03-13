@@ -140,18 +140,11 @@ class ChallengesController extends Controller
         $text = $request->input('myCode');
         $challenge_id = $request->input('challenge_id');
         $code = new Code();
-        $code->text = $text;
-        $code->participant_id=$user->id;
-        $code->challenge_id= $challenge_id;
-
+        $code->content = $text;
+        $code->participant_id = $user->id;
+        $code->challenge_id = $challenge_id;
         $code->save();
-
-
         session()->flash('message', 'Your code is submitted successfully!');
-
-
-
-
         return redirect()->back();
     }
     /**

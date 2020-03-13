@@ -87,7 +87,6 @@
                                                         <label for="status">Status</label>
                                                         <select id="status" name="status" class="form-control">
 
-                                                            <option value="{{$data->status}}" {{ $data->status !== '' ? 'selected' : '' }}>{{$data->status}}</option>
                                                             <option value="closed" name="status">closed</option>
                                                             <option value="ongoing" name="status">ongoing</option>
                                                         </select>
@@ -122,6 +121,7 @@
                                     <div class="modal fade" id="submitCodeModal{{$data->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                         <div class="modal-dialog" role="document">
                                             <form class="" action="{{URL::to('/submitCode')}}" method="post">
+                                            
                                                 <div class="modal-content">
                                                     <div class="modal-header">
                                                         <h5 class="modal-title" id="exampleModalLabel">My Code</h5>
@@ -130,6 +130,7 @@
                                                         </button>
                                                     </div>
                                                     <div class="modal-body">
+                                                    @csrf
                                                         <input type="hidden" id="title" name="challenge_id" class="form-control" value="{{$data->id}}" placeholder="Enter title">
 
 

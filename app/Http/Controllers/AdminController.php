@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Admin;
+use App\User;
 use Illuminate\Http\Request;
 
 class AdminController extends Controller
@@ -81,5 +82,43 @@ class AdminController extends Controller
     public function destroy(Admin $admin)
     {
         //
+    }
+
+    /**
+     * 
+     * 
+     * 
+     */
+    public function allUsers()
+
+    {
+        $users = User::all();
+        return view('approve_guest', ['users' => $users]);
+    }
+
+
+    /**
+     * 
+     * 
+     */
+    public function approveUser(Request $request)
+    {
+        echo "approve User function";
+        //  print_r($request->input());
+        $user = auth()->user();
+        print_r($user);
+        $id = $request->input('user_id');
+        $role = $request->input('type');
+        $user = User::find($id);
+
+        if ($user) {
+          
+            $user->type = $role;
+            $user->save();
+
+
+            session()->flash('message', 'Role of this user is updated!');
+        }
+        return redirect()->back();
     }
 }

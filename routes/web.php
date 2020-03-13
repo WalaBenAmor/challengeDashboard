@@ -18,7 +18,7 @@ Route::post('/logs', 'ParticipantController@logs');
 Route::view('/challenge_dashboard', "challenge_dashboard");
 
 Route::view('/create_challenge', "create_challenge");
-Route::view('/approve_guest', "approve_guest");
+
 
 Route::resource('comment', 'CommentController');
 Route::resource('code', 'CodeController');
@@ -37,6 +37,9 @@ Route::post('/storeChallenge', 'ChallengesController@storeChallenge');
 Route::post('/store', 'ParticipantController@store');
 Route::post('/editChallenge', 'ChallengesController@editChallenge');
 Route::post('/submitCode', 'ChallengesController@submitCode');
+Route::view('/approve_guest', "approve_guest");
+Route::get('approve_guest', 'AdminController@allUsers');
+Route::post('/approveUser', 'AdminController@approveUser');
 
 
 

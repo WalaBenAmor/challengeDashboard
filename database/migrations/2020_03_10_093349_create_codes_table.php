@@ -18,7 +18,7 @@ class CreateCodesTable extends Migration
             $table->integer('id')->autoIncrement();
             $table->text('content');  
             $table->integer('participant_id');
-            $table->foreign('participant_id')->unsigned()->references('id')->on('participants');
+            $table->foreign('participant_id')->unsigned()->references('id')->on('users');
             $table->integer('challenge_id');
             $table->foreign('challenge_id')->unsigned()->references('id')->on('challenges');
             $table->timestamps();
