@@ -41,6 +41,31 @@
     <!-- Custom Fonts -->
 
     <link href="{!! asset('theme/vendor/font-awesome/css/font-awesome.min.css') !!}" rel="stylesheet" type="text/css">
+    <!-- Styles -->
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+
+    <!-- Bootstrap Core CSS -->
+
+    <link href="{!! asset('theme/vendor/bootstrap/css/bootstrap.min.css') !!}" rel="stylesheet">
+
+
+
+    <!-- MetisMenu CSS -->
+
+    <link href="{!! asset('theme/vendor/metisMenu/metisMenu.min.css') !!}" rel="stylesheet">
+
+
+
+    <!-- Custom CSS -->
+
+    <link href="{!! asset('theme/css/sb-admin-2.css') !!}" rel="stylesheet">
+
+
+
+    <!-- Custom Fonts -->
+
+    <link href="{!! asset('theme/vendor/font-awesome/css/font-awesome.min.css') !!}" rel="stylesheet" type="text/css">
+
 
 
 
@@ -105,7 +130,7 @@
 
     <script src="{!! asset('theme/vendor/raphael/raphael.min.js') !!}"></script>
 
-   
+
 
 
 

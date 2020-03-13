@@ -4,7 +4,7 @@
 
         <ul class="nav" id="side-menu">
 
-            <li>
+            <!-- <li>
 
                 <a href="{{ url('register') }}"><i class="fa fa-dashboard fa-fw"></i> register</a>
 
@@ -13,6 +13,12 @@
 
                 <a href="{{ url('login') }}"><i class="fa fa-dashboard fa-fw"></i> login</a>
 
+            </li> -->
+            <li>
+
+            </li>
+            <li>
+                
             </li>
 
             <li>
