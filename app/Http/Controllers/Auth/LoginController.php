@@ -29,20 +29,31 @@ class LoginController extends Controller
     protected function authenticated(Request $request, $user)
     {
         if ($user->isAdmin()) { // do your magic here
-            // return redirect()->route('dashboard');
-            $challenges = Challenge::all();
-            return view('challenge_dashboard', ['challenges' => $challenges], ['status' => 'allStatus']);
+            // $challenges = Challenge::all();
+            // return view('/challenge_dashboard', ['challenges' => $challenges], ['status' => 'allStatus']);
+            session()->flash('loginMessage', 'Admin');
+            return redirect('/welcome');
         } elseif ($user->isGuest()) { // do your magic here
             return view('guest');
-        } elseif ($user->isParticipant() || $user->isOrganizer()) {
-            $challenges = Challenge::where('status', 'ongoing')
-                ->orderBy('id', 'desc')
-                ->take(10)
-                ->get();
-            return view('challenge_dashboard', ['challenges' => $challenges], ['status' => 'ongoing']);
+        } elseif ($user->isParticipant() ) {
+            // $challenges = Challenge::where('status', 'ongoing')
+            //     ->orderBy('id', 'desc')
+            //     ->take(10)
+            //     ->get();
+            // return view('challenge_dashboard', ['challenges' => $challenges], ['status' => 'ongoing']);
+            session()->flash('loginMessage', 'Participant');
+            return redirect('/welcome');
+        } elseif ($user->isOrganizer()) {
+            // $challenges = Challenge::where('status', 'ongoing')
+            //     ->orderBy('id', 'desc')
+            //     ->take(10)
+            //     ->get();
+            // return view('challenge_dashboard', ['challenges' => $challenges], ['status' => 'ongoing']);
+            session()->flash('loginMessage', 'Orginazer');
+            return redirect('/welcome');
         }
 
-        return redirect('/home');
+        return redirect('/welcome');
     }
     /**
      * 

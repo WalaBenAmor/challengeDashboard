@@ -78,8 +78,7 @@ class ChallengesController extends Controller
 
 
         // return response()->json(['success' => true, 'message' => 'A new challenge is created!']);
-        // return redirect('/login');
-        session()->flash('message', 'A new challenge is added successfully!');
+        session()->flash('addChallenge', 'A new challenge is added successfully!');
 
         return redirect()->back();
     }
@@ -118,8 +117,7 @@ class ChallengesController extends Controller
 
 
             // return response()->json(['success' => true, 'message' => 'A new challenge is created!']);
-            // return redirect('/login');
-            session()->flash('message', 'A new challenge is added successfully!');
+            session()->flash('editChallenge', 'A new challenge is edited successfully!');
         }
 
 
@@ -144,7 +142,7 @@ class ChallengesController extends Controller
         $code->participant_id = $user->id;
         $code->challenge_id = $challenge_id;
         $code->save();
-        session()->flash('message', 'Your code is submitted successfully!');
+        session()->flash('submitCode', 'Your code is submitted successfully!');
         return redirect()->back();
     }
     /**

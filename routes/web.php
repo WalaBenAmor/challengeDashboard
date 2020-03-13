@@ -40,7 +40,7 @@ Route::post('/submitCode', 'ChallengesController@submitCode');
 Route::view('/approve_guest', "approve_guest");
 Route::get('approve_guest', 'AdminController@allUsers');
 Route::post('/approveUser', 'AdminController@approveUser');
-
+Route::view('/welcome', "welcome");
 
 
 Auth::routes();

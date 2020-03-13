@@ -33,6 +33,13 @@
                 <div class="input-group custom-search-form">
                     <div class="table-responsive">
                         <table id="tableCss" class="table table-striped table-hover table-condensed">
+                            @if(Session::has('submitCode'))
+                            <p class="alert {{ Session::get('alert-class', 'alert-info') }}">{{ Session::get('submitCode') }}</p>
+                            @endif
+                         
+                            @if(Session::has('editChallenge'))
+                            <p class="alert {{ Session::get('alert-class', 'alert-info') }}">{{ Session::get('editChallenge') }}</p>
+                            @endif
                             <thead>
                                 <tr>
                                     <th><strong>ID</strong></th>
@@ -121,7 +128,7 @@
                                     <div class="modal fade" id="submitCodeModal{{$data->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                         <div class="modal-dialog" role="document">
                                             <form class="" action="{{URL::to('/submitCode')}}" method="post">
-                                            
+
                                                 <div class="modal-content">
                                                     <div class="modal-header">
                                                         <h5 class="modal-title" id="exampleModalLabel">My Code</h5>
@@ -130,7 +137,7 @@
                                                         </button>
                                                     </div>
                                                     <div class="modal-body">
-                                                    @csrf
+                                                        @csrf
                                                         <input type="hidden" id="title" name="challenge_id" class="form-control" value="{{$data->id}}" placeholder="Enter title">
 
 

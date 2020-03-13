@@ -7,10 +7,10 @@
     <div class="col-lg-12">
 
         <h1 class="page-header">Create Challenge</h1>
-        @if(Session::has('message'))
-        <p class="alert {{ Session::get('alert-class', 'alert-info') }}">{{ Session::get('message') }}</p>
+        @if(Session::has('addChallenge'))
+        <p class="alert {{ Session::get('alert-class', 'alert-info') }}">{{ Session::get('addChallenge') }}</p>
         @endif
-
+   
     </div>
 
     <!-- /.col-lg-12 -->
